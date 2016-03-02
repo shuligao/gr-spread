@@ -22,5 +22,6 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/spread
+    fhss_framer.h
+    fhss_deframer.h DESTINATION include/spread
 )

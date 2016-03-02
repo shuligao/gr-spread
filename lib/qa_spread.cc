@@ -26,11 +26,14 @@
  */
 
 #include "qa_spread.h"
+#include "qa_fhss_deframer.h"
+#include "qa_scramblers.h"
 
 CppUnit::TestSuite *
 qa_spread::suite()
 {
   CppUnit::TestSuite *s = new CppUnit::TestSuite("spread");
-
+  s->addTest(gr::spread::qa_fhss_deframer::suite());
+  s->addTest(gr::spread::qa_scramblers::suite());
   return s;
 }

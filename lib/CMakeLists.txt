@@ -26,6 +26,9 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 
 list(APPEND spread_sources
+    fhss_framer_impl.cc
+    fhss_deframer_impl.cc
+    scramblers.cc
 )
 
 set(spread_sources "${spread_sources}" PARENT_SCOPE)
@@ -63,9 +66,11 @@ include_directories(${CPPUNIT_INCLUDE_DIRS})
 list(APPEND test_spread_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_spread.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_spread.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/qa_fhss_deframer.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/qa_scramblers.cc
 )
 
-add_executable(test-spread ${test_spread_sources})
+add_executable(test-spread ${test_spread_sources} ${spread_sources})
 
 target_link_libraries(
   test-spread

@@ -18,5 +18,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    DESTINATION share/gnuradio/grc/blocks
+    spread_fhss_framer.xml
+    spread_fhss_deframer.xml DESTINATION share/gnuradio/grc/blocks
 )
