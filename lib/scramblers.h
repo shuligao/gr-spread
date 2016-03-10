@@ -20,76 +20,9 @@
 
 #pragma once
 
-#include <vector>
-#include <cstdint>
+#include "buffers.h"
 
 using uarray_t = std::vector<uint8_t>;
-using size_t = std::size_t;
-
-/* Circular buffer */
-template<typename T>
-class circ {
-public:
-    circ(const uarray_t &init)
-        : array(init), head(0), tail(0)
-    {
-    }
-
-    void push(T val)
-    {
-        tail = ++tail % array.size();
-
-        if (full())
-            head = ++head % array.size();
-
-        array[tail++ % array.size()] = val;
-    }
-
-    T pop()
-    {
-        if (head == tail)
-            return nullptr;
-
-        head = ++head % array.size();
-        return array[head];
-    }
-
-    const T& front()
-    {
-        return array[head];
-    }
-
-    const T& at(size_t i)
-    {
-        return array[(head + i) % array.size()];
-    }
-
-    bool empty()
-    {
-        return head == tail;
-    }
-
-    bool full()
-    {
-        return (tail + 1) % array.size() == head;
-    }
-
-    size_t size()
-    {
-        return array.size();
-    }
-
-    void clear()
-    {
-        head = 0;
-        tail = 0;
-    }
-
-private:
-    size_t head, tail;
-
-    std::vector<T> array;
-};
 
 /*
  *  Data scramblers/descramblers for synchronization

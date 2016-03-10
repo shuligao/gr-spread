@@ -29,6 +29,8 @@ list(APPEND spread_sources
     fhss_framer_impl.cc
     fhss_deframer_impl.cc
     scramblers.cc
+    sync.cc
+    gfsk.cc
 )
 
 set(spread_sources "${spread_sources}" PARENT_SCOPE)
